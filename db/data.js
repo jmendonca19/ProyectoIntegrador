@@ -32,7 +32,7 @@ const data = {
         },
         {
            usuario: "Maria Vecerra",
-           comentario: "No me gusta el auto, muy feo!",
+           comentario: "No me gusta el auto, ¡muy feo!", 
            fotoUsuarios: "" 
         }
     ]
