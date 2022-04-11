@@ -58,3 +58,28 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
+
+.body {
+  background-color: #141414;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.logotipo {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: bold; 
+  color: rgb(7, 17, 161);
+  font-size: 35px;
+}
+
+.main-header{
+  background-color: black; 
+}
+.titulosNav {
+  color: grey;
+  font-size: 15px;
+}
+
+.products-title{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
