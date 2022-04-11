@@ -59,7 +59,7 @@
     font-size: 12px;
 }
 
-.body {
+body {
   background-color: #141414;
   font-family: 'Open Sans', sans-serif;
 }
@@ -68,7 +68,17 @@
   font-family: 'Permanent Marker', cursive;
   font-weight: bold; 
   color: rgb(7, 17, 161);
-  font-size: 35px;
+  font-size: 21px;
+}
+
+.profileText{
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.datosProfile {
+    color: #fff;
 }
 
 .main-header{

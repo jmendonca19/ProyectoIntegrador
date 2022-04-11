@@ -15,19 +15,19 @@
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= data.usuario[0].usuario %> 
+					<h1 class="profileText"> <%= data.usuario[0].usuario %> 
 						<a href="/users/profile-edit">
                             <i class="fas fa-cog"></i>
 						</a>
 					</h1>
 					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 				</div>
-                <p><%= data.usuario[0].email %></p> 
+                <p class="datosProfile"><%= data.usuario[0].email %></p> 
 				<div>
 					<ul class="">
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
+						<li class="datosProfile"> <%= data.productos.length %>  productos</li>
+						<li class="datosProfile">200 seguidores</li>
+						<li class="datosProfile">300 comentarios</li>
 					</ul>
 				</div>
 			</div>
