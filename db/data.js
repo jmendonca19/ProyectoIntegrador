@@ -4,10 +4,10 @@ const data = {
             email: "joaknezaustral@gmail.com",
             usuario: "Joaquin Knez",
             contrasenia: "Holasoyjoaquin",
-            fechaNacimiento: "09/04/2003" ,
+            fechaNacimiento: "09/04/2003",
             dni: 44517526 ,
-            fotoPerfil: "" ,
-        },
+            fotoPerfil: "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/08/fotos-perfil-whatsapp_16.jpg?itok=fl2H3Opv"
+        }
     ],
     comentarios: [
         {
@@ -32,67 +32,67 @@ const data = {
         },
         {
            usuario: "Maria Vecerra",
-           comentario: "No me gusta el auto, ¡muy feo!", 
+           comentario: "No me gusta el auto, ¡Muy feo!", 
            fotoUsuarios: "" 
         }
     ],
     productos: [
         {
-            nombreProducto: "volkswagen modelo 2016",
+            nombreProducto: "Volkswagen modelo 2016",
             descripcion: "scirocco",
-            fechaCarga: "23/3/2020",
-            imagen: "black",
+            fechaCarga: "23/03/2020",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
-            nombreProducto: "volkswagen modelo 2020",
+            nombreProducto: "Volkswagen modelo 2020",
             descripcion: "scirocco",
             fechaCarga: "19/02/2021",
             imagen: "red",
         },
         {
-            nombreProducto: "volkswagen modelo 2015",
+            nombreProducto: "Volkswagen modelo 2015",
             descripcion: "scirocco",
             fechaCarga: "25/02/2021",
             imagen: "white", 
         },
         {
-            nombreProducto: "chevrolet modelo 2016",
+            nombreProducto: "Chevrolet modelo 2016",
             descripcion: "cruze",
             fechaCarga: "05/07/2017",
             imagen: "white",
         },
         {
-            nombreProducto: "nissan modelo 2020",
+            nombreProducto: "Nissan modelo 2020",
             descripcion: "sentra",
             fechaCarga: "12/03/2022",
             imagen: "gray",
         },
         {
-            nombreProducto: "toyota modelo 2022",
+            nombreProducto: "Toyota modelo 2022",
             descripcion: "etios",
             fechaCarga: "06/02/2022",
             imagen: "black",
         },
         {
-            nombreProducto: "audi modelo 2019",
+            nombreProducto: "Audi modelo 2019",
             descripcion: "a6",
             fechaCarga: "03/04/2020",
             imagen: "black",
         },
         {
-            nombreProducto: "toyota modelo 2014",
+            nombreProducto: "Toyota modelo 2014",
             descripcion: "Corolla",
             fechaCarga: "20/09/2015",
             imagen: "blue",
         },
         {
-            nombreProducto: "peugeot modelo 2010",
+            nombreProducto: "Peugeot modelo 2010",
             descripcion: "208",
             fechaCarga: "09/08/2011",
             imagen: "white",
         },
         {
-            nombreProducto: "audi modelo 2022",
+            nombreProducto: "Audi modelo 2022",
             descripcion: "tt",
             fechaCarga: "10/03/2022",
             imagen: "black",
