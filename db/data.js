@@ -5,7 +5,7 @@ const data = {
             usuario: "Joaquin Knez",
             contrasenia: "Holasoyjoaquin",
             fechaNacimiento: "09/04/2003",
-            dni: 44517526 ,
+            dni: 44517526,
             fotoPerfil: "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/08/fotos-perfil-whatsapp_16.jpg?itok=fl2H3Opv"
         }
     ],
@@ -47,55 +47,55 @@ const data = {
             nombreProducto: "Volkswagen modelo 2020",
             descripcion: "scirocco",
             fechaCarga: "19/02/2021",
-            imagen: "red",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Volkswagen modelo 2015",
             descripcion: "scirocco",
             fechaCarga: "25/02/2021",
-            imagen: "white", 
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg", 
         },
         {
             nombreProducto: "Chevrolet modelo 2016",
             descripcion: "cruze",
             fechaCarga: "05/07/2017",
-            imagen: "white",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Nissan modelo 2020",
             descripcion: "sentra",
             fechaCarga: "12/03/2022",
-            imagen: "gray",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Toyota modelo 2022",
             descripcion: "etios",
             fechaCarga: "06/02/2022",
-            imagen: "black",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Audi modelo 2019",
             descripcion: "a6",
             fechaCarga: "03/04/2020",
-            imagen: "black",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Toyota modelo 2014",
             descripcion: "Corolla",
             fechaCarga: "20/09/2015",
-            imagen: "blue",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Peugeot modelo 2010",
             descripcion: "208",
             fechaCarga: "09/08/2011",
-            imagen: "white",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
         {
             nombreProducto: "Audi modelo 2022",
             descripcion: "tt",
             fechaCarga: "10/03/2022",
-            imagen: "black",
+            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
         },
     ]
 }
