@@ -6,6 +6,9 @@ const productController = {
     },
     add: function(req, res) {
         return res.render("products-add");
+    },
+    searchResults: function(req,res) {
+        return res.render("searchResults", {data: data})
     }
 }
 
