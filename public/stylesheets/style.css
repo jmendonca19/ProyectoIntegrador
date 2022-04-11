@@ -1,8 +1,60 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.containerForm {
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+    padding: 1em;
 }
 
-a {
-  color: #00B7FF;
+.contact-form {
+    background: #222222;
+}
+
+.contact-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.contact-form form p {
+    margin: 0;
+    padding: 1em;
+}
+
+.block {
+    grid-column: 1 / 3;
+}
+
+.contact-form form button,
+.inputForm {
+    width: 100%;
+    padding: .7em;
+    border: 1px solid rgb(7, 17, 161);
+    background: none;
+    color: #fff;
+}
+
+.contact-form form button {
+    background: rgb(7, 17, 161);
+    border: 0;
+    padding: 1em;
+}
+
+.contact-form form button:hover,
+.contact-form form button:focus {
+    background: rgb(7, 17, 161);
+    color: #fff;
+    transition: background-color 1s ease-out;
+    outline: 0;
+}
+
+.recordarmeLabel{
+    margin-bottom: 5px;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }

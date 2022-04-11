@@ -15,7 +15,7 @@
 			<div class="col-12">
 				<h2 class="products-title">Ingresar</h2>
 
-	<form action="/" method="GET">
+	<!-- <form action="/" method="GET">
 		<div>
 			<label>Usuario: </label>
 			<input type="text" name="user">
@@ -31,8 +31,31 @@
 		<div>
 			<button type="submit"> Enviar </button>
 		</div>
+	</form> -->
 
-	</form>
+    <div class="containerForm">
+        <div class="contact-form">
+            <form action="/" method="GET">
+                <p>
+                    <label class="formLabel">Nombre de usuario</label>
+                    <input class="inputForm" type="text" name="name">
+                </p>
+                <p>
+                    <label class="formLabel">Contraseña</label>
+                    <input class="inputForm" type="password" name="password">
+                </p>
+                <p>
+                    <label class="recordarmeLabel">Recordarme</label>
+			        <input type="checkbox" name="recordarme">
+                </p>
+                <p class="block">
+                    <button type="submit">
+                        INGRESAR
+                    </button>
+                </p>
+            </form>
+        </div>
+    </div>
 
 
 	<!-- footer -->
