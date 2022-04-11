@@ -41,7 +41,7 @@ const data = {
             nombreProducto: "Volkswagen modelo 2016",
             descripcion: "Scirocco con 80000 kilómetros, motor 1.6 y embriage nuevo",
             fechaCarga: "23/03/2020",
-            imagen: "https://www.autopista.es/uploads/s1/55/67/58/4/5e9448e50ee6940e0c8d0a24-que-fue-del-vw-scirocco-volvera-en-2021-con-diseno-inspirado-en-el-golf-8.jpeg",
+            imagen: "/images/products/cafetera.jpg",
         },
         {
             nombreProducto: "Volkswagen modelo 2020",
