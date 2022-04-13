@@ -5,7 +5,7 @@ const productController = {
         return res.render("products", {data: data});
     },
     add: function(req, res) {
-        return res.render("products-add");
+        return res.render("products-add", {data: data});
     },
     searchResults: function(req,res) {
         return res.render("searchResults", {data: data})
