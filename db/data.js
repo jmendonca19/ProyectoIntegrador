@@ -6,34 +6,34 @@ const data = {
             contrasenia: "Holasoyjoaquin",
             fechaNacimiento: "09/04/2003",
             dni: 44517526 ,
-            fotoPerfil: "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/08/fotos-perfil-whatsapp_16.jpg?itok=fl2H3Opv"
+            fotoPerfil: "/images/users/usuario.jpg"
         }
     ],
     comentarios: [
         {
            usuario: "Ivan Fischman",
            comentario: "Hola! como me puedo contactar con vos? tengo muchas preguntas, me gusto el auto. Gracias",
-           fotoUsuarios: "" 
+           fotoUsuarios: "/images/users/spoty.jpg" 
         },
         {
            usuario: "Juana Mendonca",
            comentario: "Aceptas efectivo? si es asi me lo dejas mas barato?",
-           fotoUsuarios: "" 
+           fotoUsuarios: "/images/users/persona1.jpeg" 
         },
         {
            usuario: "Carlitos Perez",
            comentario: "Hola, me interesa. como hacemos?",
-           fotoUsuarios: "" 
+           fotoUsuarios: "/images/users/persona3.jpg" 
         },
         {
            usuario: "Alan Gomez",
            comentario: "Tiene alguna marca? cuantos kilometros tiene?",
-           fotoUsuarios: "" 
+           fotoUsuarios: "/images/users/persona2.jpg" 
         },
         {
            usuario: "Maria Vecerra",
            comentario: "No me gusta el auto, ¡Muy feo!", 
-           fotoUsuarios: "" 
+           fotoUsuarios: "/images/users/persona4.png" 
         }
     ],
     productos: [
@@ -99,7 +99,5 @@ const data = {
         },
     ]
 }
-
-
 
 module.exports = data;
