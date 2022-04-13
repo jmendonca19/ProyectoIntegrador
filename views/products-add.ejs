@@ -15,28 +15,37 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form action="/products/products-add" method="GET">
-                <div>
-                    <label for="">Imagen</label>
-                    <input type="file" name="file">
+
+            <div class="containerForm">
+                <div class="contact-form">
+                    <form action="/products/products-add" method="GET">
+                        <p>
+                            <label class="formLabel">Nombre del producto</label>
+                            <input class="inputForm" type="text" name="name">
+                        </p>
+                        <p>
+                            <label class="formLabel">Imagen</label>
+                            <input class="inputForm" type="file" name="fotoProducto">
+                        </p>
+                        <p>
+                            <label class="formLabel">Fecha de Carga</label>
+                            <input class="inputForm" type="date" name="fechaCarga">
+                        </p>
+                        <p>
+                            <label class="formLabel">Descripcion</label>
+                            <textarea class="inputForm" type="text" name="descripcion">
+                            </textarea>
+                        </p>
+                        <p class="block">
+                            <button type="submit">
+                                AGREGAR PRODUCTO
+                            </button>
+                        </p>
+                    </form>
                 </div>
-                <div>
-                    <label for="">Nombre del producto</label>
-                    <input type="text" name="name"> <br>
-                </div>
-                <div>
-                    <label for="">Descripcion</label>
-                    <input type="text" name="descripcion"> <br>
-                </div>
-                <div>
-                    <label for="">Fecha de Carga</label>
-                    <input type="date" name="fechaCarga">
-                </div>
-                <div>
-                    <button type="submit">Agregar producto </button>
-                </div>
-                
-                </form>	
+            </div>
+        </div>	
+    </div>	
 
 
 	<!-- footer -->
