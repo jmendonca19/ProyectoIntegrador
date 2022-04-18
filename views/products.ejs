@@ -10,7 +10,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%= data.productos[0].nombreProducto %> </h2> 
+			<h2 class="products-title"> <%= data.productos[id].nombreProducto %> </h2> 
 			<p class="product-detail-description">
 				<a class="products-title" href="/products/products-add">Editar</a>
 			</p>
@@ -18,9 +18,9 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src= <%= data.productos[0].imagen %>  alt="" class="imagenProducto">
+					<img src= <%= data.productos[id].imagen %>  alt="" class="imagenProducto">
 					<p class="product-detail-description">
-						<%= data.productos[0].descripcion %></p>
+						<%= data.productos[id].descripcion %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
