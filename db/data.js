@@ -5,7 +5,7 @@ const data = {
             usuario: "Joaquin Knez",
             contrasenia: "Holasoyjoaquin",
             fechaNacimiento: "09/04/2003",
-            dni: 44517526 ,
+            dni: 44517526,
             fotoPerfil: "/images/users/usuario.jpg"
         }
     ],
