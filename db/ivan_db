@@ -1,0 +1,40 @@
+use basedatos;
+
+create table `products` (
+	`id_product` int PRIMARY KEY auto_increment,
+    `name_product` varchar(255) NOT NULL,
+    `description` varchar(255) NOT NULL,
+    `image_product` varchar(255) NOT NULL,
+    `id_user` int NOT NULL,
+    `id_comment` int NOT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    
+    FOREIGN KEY (id_user) REFERENCES users(id_user)
+);
+
+create table `users` (
+	`id_user` int PRIMARY KEY auto_increment,
+    `email` varchar(255) NOT NULL,
+    `user` varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `id_product` int,
+    `id_comment` int NOT NULL,
+    `fecha_nacimiento` DATE NOT NULL,
+    `dni` int(12) NOT NULL,
+    `image_profile` varchar(255) NOT NULL,
+    
+    FOREIGN KEY (id_product) REFERENCES products(id_product)
+);
+
+create table `comments` (
+	`id_comment` int PRIMARY KEY auto_increment,
+    `user_comment` varchar(255) NOT NULL,
+    `comment` varchar(255) NOT NULL,
+    `image_comment` varchar(255) NOT NULL,
+    `id_product` int NOT NULL,
+    `id_user` int NOT NULL,
+    
+    FOREIGN KEY (id_user) REFERENCES users(id_user),
+    FOREIGN KEY (id_product) REFERENCES products(id_product)
+);
