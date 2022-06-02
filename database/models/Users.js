@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes)=>{
         id_user: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false
         },
         email: {
@@ -16,17 +16,8 @@ module.exports = (sequelize, dataTypes)=>{
         password: {
             type: dataTypes.STRING
         },
-        id_product: {
-            type: dataTypes.INTEGER
-        },
-        id_comment: {
-            type: dataTypes.INTEGER
-        },
         fecha_nacimiento: {
             type: dataTypes.DATE
-        },
-        dni: {
-            type: dataTypes.INTEGER
         },
         image_profile: {
             type: dataTypes.STRING
@@ -40,19 +31,19 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     let config = {
-       tableName: 'users',
+       // tableName: 'users',
        timestamps: true, //Aclaración en caso de no explicitar created_at, deleted_at y updated_at
        underscored: true, //Aclaración en caso que los timestamps usen guiones bajos en lugar de camelCase.
     }
    
     const Users = sequelize.define(alias, cols, config)
 
-    Users.associate = function(models){
+    /* Users.associate = function(models){
         Users.hasMany(models.Products, {
             as: "products",
             foreignKey: "id_user"
         })
-    }
+    } */
  
     return Users;
 }
