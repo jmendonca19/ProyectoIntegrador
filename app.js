@@ -37,6 +37,28 @@ app.use(function(req, res, next){
   return next()
 })
 
+app.use(function(req, res, next){
+    //chequear que no tengamos usuario en sessión y si tengamos cookie
+    if(req.session.user == undefined && req.cookies.userId !== undefined){
+      //Buscar el usario de la base de datos
+         users.findByPk(req.cookies.userId)
+              .then( function(user){
+                //Dentro del then pasar al usario a req.session.user
+                //Pasar al usuario locals.user
+                // retornar next()
+                  req.session.user = user
+                  res.locals.user = user
+                
+                  return next()
+  
+              })
+              .catch( error => console.log(error))
+            } else { //tiene que haber un else
+              return next()
+            }
+  })
+  
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
