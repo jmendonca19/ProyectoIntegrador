@@ -21,6 +21,7 @@ const userController = {
         const errors = {}
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
+            res.locals.errors = errors;
             console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else if(req.body.password == ""){
@@ -54,7 +55,7 @@ const userController = {
                     }
                     users.create(usuario)
                         .then(user => {
-                            return res.redirect('/')
+                            return res.redirect('/login')
                         })
                         .catch(e=>{
                             console.log(e)

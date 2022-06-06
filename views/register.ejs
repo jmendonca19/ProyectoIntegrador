@@ -22,11 +22,13 @@
                     <p>
                         <label class="formLabel">Nombre de usuario</label>
                         <input class="inputForm" type="text" name="user">
-                        <label class="error"></label>
                     </p>
                     <p>
                         <label class="formLabel">Email</label>
                         <input class="inputForm" type="email" name="email">
+                        <% if(locals.errors) { %>
+                            <p class="error"> <% errors.message %>  </p>
+                        <% } %> 
                     </p>
                     <p>
                         <label class="formLabel">Contraseña</label>
