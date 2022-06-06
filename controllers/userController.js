@@ -9,8 +9,11 @@ const userController = {
         return res.render("register");
     },
     login: function(req, res){
+        return res.render("login")
+    },
+    loginStore: function(req, res){
         // Buscar el usuario que se quiere loguear.
-        db.User.findOne({
+        users.findOne({
             where: [{email: req.body.email}]
         })
         .then( user => {
