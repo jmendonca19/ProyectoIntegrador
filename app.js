@@ -1,18 +1,16 @@
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require('express-session');
-
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
-
 const db = require('./database/models');
-const users = db.Users;
+const users = db.Users //Es el alias del modelo
+
 
 var app = express();
 
