@@ -20,12 +20,18 @@
             <div class="contact-form">
                 <form action="/users/login" method="POST">
                     <p>
-                        <label class="formLabel">Nombre de usuario</label>
-                        <input class="inputForm" type="text" name="name">
+                        <label class="formLabel">Email</label>
+                        <input class="inputForm" type="email" name="email">
+                        <% if(locals.errors) { %>
+                            <p class="error"> <% errors.message %>  </p>
+                        <% } %> 
                     </p>
                     <p>
                         <label class="formLabel">Contraseña</label>
                         <input class="inputForm" type="password" name="password">
+                        <% if(locals.errors) { %>
+                            <p class="error"> <% errors.message %>  </p>
+                        <% } %> 
                     </p>
                     <p>
                         <label class="recordarmeLabel">Recordarme</label>
