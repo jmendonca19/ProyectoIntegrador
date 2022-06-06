@@ -16,7 +16,7 @@ module.exports = (sequelize, dataTypes)=>{
         image_product: {
             type: dataTypes.STRING
         },
-        user_id: {
+        id_user: {
             type: dataTypes.INTEGER
         },
         id_comment: {
