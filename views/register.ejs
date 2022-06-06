@@ -26,9 +26,6 @@
                     <p>
                         <label class="formLabel">Email</label>
                         <input class="inputForm" type="email" name="email">
-                        <% if(locals.errors) { %>
-                            <p class="error"> <% errors.message %>  </p>
-                        <% } %> 
                     </p>
                     <p>
                         <label class="formLabel">Contraseña</label>
@@ -41,6 +38,9 @@
                     <p>
                         <label class="formLabel">Foto de perfil</label>
                         <input class="inputForm" type="file" name="image_profile">
+                        <% if(locals.errors) { %>
+                            <p class="error"> <%= errors.message %>  </p>
+                        <% } %> 
                     </p>
                     <p class="block">
                         <button type="submit">

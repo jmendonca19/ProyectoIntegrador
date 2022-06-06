@@ -19,27 +19,27 @@ const userController = {
         .then( user => {
             let errors = {};
             //¿Está el email en la base de datos
-            if(user == null){
+            if(user == null || user == undefined){
                 //crear un mensaje de error
                 errors.message = "El email no existe"
                 //Pasar el mensaje a la vista
                 res.locals.errors = errors
                 //renderizar la vista
-                return res.redirect('login');
+                return res.render('login');
             } else if(bcrypt.compareSync(req.body.password, user.password) == false){
                 //crear un mensaje de error
                 errors.message = "La contraseña es incorrecta"
                 //Pasar el mensaje a la vista
                 res.locals.errors = errors
                 //renderizar la vista
-                return res.redirect('login');
+                return res.render('login');
             } else {
                 req.session.user = user;
                 console.log('en login controller');
                 console.log(req.session.user);
                 //Si tildó recordame => creamos la cookie.
                 if(req.body.rememberme != undefined){
-                    res.cookie('userId', user.user_id, { maxAge: 1000 * 60 * 5})
+                    res.cookie('userId', user.id_user, { maxAge: 1000 * 60 * 5})
                 }
                 return res.redirect('/');
             }
@@ -62,18 +62,18 @@ const userController = {
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
             res.locals.errors = errors;
-            console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else if(req.body.password == ""){
             errors.message = "La contraseña es obligatoria";
-            console.log(errors) // Guardar errors en locals
+            res.locals.errors = errors;
             return res.render('register')
         } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
             errors.message = "El archivo debe ser jpg o png";
-            console.log(errors) // Guardar errors en locals
+            res.locals.errors = errors;
             return res.render('register')
         } else if(req.body.user == "") {
             errors.message = "El nombre de usuario es obligatorio"
+            res.locals.errors = errors;
             console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else {
@@ -83,6 +83,7 @@ const userController = {
             .then(function(user){
                 if(user != null){
                     errors.message = "El email ya esta registrado por favor elija otro";
+                    res.locals.errors = errors;
                     console.log(errors) // Guardar errors en locals
                     return res.render('register')
                 } else {
