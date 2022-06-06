@@ -46,6 +46,11 @@ const userController = {
         })
         .catch( e => {console.log(e)})
     },
+    logout: function(req, res){
+        req.session.destroy()
+        res.clearCookie("id_user")
+        res.redirect("/")
+    },
     profile: function(req, res) {
         return res.render("profile", {data: data});
     },
