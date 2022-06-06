@@ -90,7 +90,7 @@ const userController = {
                     }
                     users.create(usuario)
                         .then(user => {
-                            return res.redirect('/login')
+                            return res.redirect('/')
                         })
                         .catch(e=>{
                             console.log(e)
