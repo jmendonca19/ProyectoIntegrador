@@ -18,6 +18,7 @@ let upload = multer({storage: storage});
 
 router.get("/register", userController.register)
 router.get("/login", userController.login)
+
 router.get("/profile", userController.profile);
 router.get("/profile-edit", userController.profileEdit);
 router.post("/register", upload.single('image_profile'), userController.registerProcess)
