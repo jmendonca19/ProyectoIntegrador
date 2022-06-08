@@ -19,7 +19,7 @@ const userController = {
         .then( user => {
             let errors = {};
             //¿Está el email en la base de datos
-            if(user == null || user == undefined){
+            if(user == null){
                 //crear un mensaje de error
                 errors.message = "El email no existe"
                 //Pasar el mensaje a la vista
@@ -35,8 +35,7 @@ const userController = {
                 return res.render('login');
             } else {
                 req.session.user = user;
-                console.log('en login controller');
-                console.log(req.session.user);
+
                 //Si tildó recordame => creamos la cookie.
                 if(req.body.rememberme != undefined){
                     res.cookie('userId', user.id_user, { maxAge: 1000 * 60 * 5})
@@ -47,8 +46,10 @@ const userController = {
         .catch( e => {console.log(e)})
     },
     logout: function(req, res){
-        req.session.destroy()
-        res.clearCookie("id_user")
+        req.session.destroy();
+
+        res.clearCookie("userId");
+        
         res.redirect("/")
     },
     profile: function(req, res) {
