@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes)=>{
         id_product: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false
         },
         name_product: {
@@ -17,9 +17,6 @@ module.exports = (sequelize, dataTypes)=>{
             type: dataTypes.STRING
         },
         id_user: {
-            type: dataTypes.INTEGER
-        },
-        id_comment: {
             type: dataTypes.INTEGER
         },
         created_at: {
@@ -40,9 +37,13 @@ module.exports = (sequelize, dataTypes)=>{
 
     Products.associate = function(models){
         Products.belongsTo(models.Users, {
-            as: "user",
+            as: "users",
             foreignKey: "id_user"
         })
+        Products.hasMany(models.Comments,{
+            as: 'comments',
+            foreignKey: 'id_product' 
+         }) 
     }
  
     return Products;
