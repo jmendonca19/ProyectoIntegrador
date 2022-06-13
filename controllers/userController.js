@@ -1,4 +1,4 @@
-const data = require("../db/data");
+
 const bcrypt = require('bcryptjs')
 const db = require("../database/models");
 const op = db.Sequelize.Op;

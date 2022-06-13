@@ -18,22 +18,18 @@
 
             <div class="containerForm">
                 <div class="contact-form">
-                    <form action="/products/products-add" method="GET">
+                    <form action="/products/products-add" method="POST" enctype="multipart/form-data">
                         <p>
                             <label class="formLabel">Nombre del producto</label>
-                            <input class="inputForm" type="text" name="name">
+                            <input class="inputForm" type="text" name="name_product">
                         </p>
                         <p>
                             <label class="formLabel">Imagen</label>
-                            <input class="inputForm" type="file" name="fotoProducto">
-                        </p>
-                        <p>
-                            <label class="formLabel">Fecha de Carga</label>
-                            <input class="inputForm" type="date" name="fechaCarga">
+                            <input class="inputForm" type="file" name="image_product">
                         </p>
                         <p>
                             <label class="formLabel">Descripcion</label>
-                            <textarea class="inputForm" type="text" name="descripcion">
+                            <textarea class="inputForm" type="text" name="description">
                             </textarea>
                         </p>
                         <p class="block">
