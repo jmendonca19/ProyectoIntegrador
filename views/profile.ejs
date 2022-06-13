@@ -11,21 +11,21 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src=<%= data.usuario[0].fotoPerfil %>  alt="foto de perfil" class="foto-perfil">
+				<img src= "/images/users/<%= data.image_profile %>"  alt="foto de <%= data.user %> " class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="profileText"> <%= data.usuario[0].usuario %> 
-						<a href="/users/profile-edit">
+					<h1 class="profileText"> <%= data.user %> 
+						<a href="/users/profile-edit/<%= data.id_user %>">
                             <i class="fas fa-cog"></i>
 						</a>
 					</h1>
 					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 				</div>
-                <p class="datosProfile"><%= data.usuario[0].email %></p> 
+                <p class="datosProfile"><%= data.email%></p> 
 				<div>
 					<ul class="">
-						<li class="datosProfile"> <%= data.productos.length %>  productos</li>
+						<li class="datosProfile"> 10 productos</li>
 						<li class="datosProfile">200 seguidores</li>
 						<li class="datosProfile">300 comentarios</li>
 					</ul>
@@ -42,16 +42,16 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
-			<% for(let i=0; i< data.productos.length ; i+=1) { %>
+			<% for(let i=0; i< datos.productos.length ; i+=1) { %>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <section class="product-box">
                         <a href="/products/product">
                             <figure class="product-box_image">
-                                <img src=<%= data.productos[i].imagen %> alt="card">
+                                <img src=<%= datos.productos[i].imagen %> alt="card">
                             </figure>
                             <article class="product-box_data">
-                                <h2> <%= data.productos[i].nombreProducto %>  </h2>
-                                <p> <%= data.productos[i].descripcion %>  </p>
+                                <h2> <%= datos.productos[i].nombreProducto %>  </h2>
+                                <p> <%= datos.productos[i].descripcion %>  </p>
                                 <p>Comentarios: 12</p>
                             </article>
                         </a>

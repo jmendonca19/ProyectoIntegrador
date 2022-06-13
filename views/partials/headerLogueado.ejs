@@ -36,7 +36,7 @@
 
             <ul class="right-navbar">
 				<% if(locals.user) { %> 
-					<li><a href="/users/profile" class="titulosNav" >
+					<li><a href="/users/profile/<%= locals.user.id_user %> " class="titulosNav" >
                         Hola! <%= locals.user.user %>   <i class="fas fa-user"></i>
                         </a>
                     </li>

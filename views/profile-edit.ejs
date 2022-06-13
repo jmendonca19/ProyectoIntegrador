@@ -2,7 +2,6 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include("partials/head.ejs") %> 
-
 <body>
 	<!-- Header -->
 	<%- include("partials/headerLogueado.ejs") %> 
@@ -17,14 +16,14 @@
 			<!-- Show the "ultimos" products -->
 			<div class="containerForm">
                 <div class="contact-form">
-                    <form action="/" method="GET">
+                    <form action="/users/profile-edit/profileStore" method="POST">
                         <p>
                             <label class="formLabel">Nombre de usuario</label>
-                            <input class="inputForm" type="text" name="name">
+                            <input class="inputForm" type="text" name="user" value="<%= data.user %> ">
                         </p>
                         <p>
                             <label class="formLabel">Email</label>
-                            <input class="inputForm" type="email" name="email">
+                            <input class="inputForm" type="email" name="email" value="<%= data.email %> ">
                         </p>
                         <p>
                             <label class="formLabel">Contraseña</label>
@@ -32,15 +31,11 @@
                         </p>
                         <p>
                             <label class="formLabel">Fecha de nacimiento</label>
-                            <input class="inputForm" type="date" name="fechaNacimiento">
-                        </p>
-                        <p>
-                            <label class="formLabel">DNI</label>
-                            <input class="inputForm" type="number" name="dni">
+                            <input class="inputForm" type="date" name="fecha_nacimiento">
                         </p>
                         <p>
                             <label class="formLabel">Foto de perfil</label>
-                            <input class="inputForm" type="file" name="fotoPerfil">
+                            <input class="inputForm" type="file" name="image_profile">
                         </p>
                         <p class="block">
                             <button type="submit">
