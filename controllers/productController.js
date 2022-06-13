@@ -33,7 +33,37 @@ const productController = {
         return res.render("products-add", {db: db});
     },
     edit: function(req, res) {
+        const id = req.params.id;
+        if(req.session.user){
+            Producto.findByPk(id)
+                .then(data=>{
+                    if(req.session.user.id_user == data.id_user){
+                        return res.render("product-edit", {data: data}); 
+                    }else{
+                        return res.redirect("/")
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }else{
+            return res.redirect("/users/login")
+        }
         return res.render("product-edit", {data: data});
+    },
+    productUpdate: function(req, res){
+        const product = {
+            name_product: req.body.name_product,
+            image_product: "",
+            description: req.body.description,
+        }
+        if(req.file == undefined){
+            product.image_product = req.session.user.image_profile;
+        }else{
+            product.image_product = req.file.filename;
+        }
+
+        
     },
     searchResults: function(req, res) {
         return res.render("searchResults", {db: db})
