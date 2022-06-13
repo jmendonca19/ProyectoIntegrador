@@ -1,4 +1,4 @@
-const datos = require("../db/data");
+const datos = require("../db/data")
 const bcrypt = require('bcryptjs')
 const db = require("../database/models");
 const users = db.Users //user es el alias de la base de datos
@@ -115,6 +115,12 @@ const userController = {
                             association: 'users'
                         }
                     },
+                    {
+                        association: "products",
+                        include: {
+                            association: "comments"
+                        }
+                    }
                 ]
             })
             .then(data => {

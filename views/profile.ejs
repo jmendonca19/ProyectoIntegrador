@@ -25,9 +25,9 @@
                 <p class="datosProfile"><%= data.email%></p> 
 				<div>
 					<ul class="">
-						<li class="datosProfile"> 10 productos</li>
+						<li class="datosProfile"> <%= data.products.length %> productos </li>
 						<li class="datosProfile">200 seguidores</li>
-						<li class="datosProfile">300 comentarios</li>
+						<li class="datosProfile"> <%= data.comments.length %> comentarios </li>
 					</ul>
 				</div>
 			</div>
@@ -42,22 +42,29 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
-			<% for(let i=0; i< datos.productos.length ; i+=1) { %>
+			<% if(data.products.lenth != 0) {  %> 
+			<% for(let i=0; i< data.products.length ; i+=1) { %>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <section class="product-box">
-                        <a href="/products/product">
+                        <a href="/products/product/<%= data.products[i].id_product %> ">
                             <figure class="product-box_image">
-                                <img src=<%= datos.productos[i].imagen %> alt="card">
+                                <img src= "/images/products/<%= data.products[i].image_product %> " alt="card">
                             </figure>
                             <article class="product-box_data">
-                                <h2> <%= datos.productos[i].nombreProducto %>  </h2>
-                                <p> <%= datos.productos[i].descripcion %>  </p>
-                                <p>Comentarios: 12</p>
+                                <h2> <%= data.products[i].name_product %>  </h2>
+                                <p> <%= data.products[i].description %>  </p>
+                                <p>Comentarios: <%= data.products[i].comments.length %> </p>
                             </article>
                         </a>
                     </section>
                 </div>
             <% } %> 
+			<% }else { %>
+				<div class="page">
+					<p>No hay ningún producto para mostrar</p>
+				</div>
+			<% } %>
+
 		</div>
 	</div>
 	<!-- /Mis productos -->
