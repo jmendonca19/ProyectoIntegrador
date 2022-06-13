@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes)=>{
         id_comment: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false
         },
         comment: {
