@@ -1,14 +1,39 @@
-const db = require("../database/models");
-const op = db.Sequelize.Op;
-const products = db.Products
+const data = require("../db/data")
+const db = require('../database/models')
+const Usuario = db.Users
+const Producto = db.Products;
+const Comentario = db.Comments;
+const Op = db.Sequelize.Op;
 
 const productController = {
-    index: function(req, res){
+    detail: function(req, res){
         const id = req.params.id;
-        return res.render("products", {db: db});
+        
+        Producto.findByPk(id, {
+            include: [  //relación comentario producto.
+                { association: 'comments',
+                    include: { association: 'users' },
+                },                           
+                { association: 'users' }
+            ],
+        })
+            .then(data => {
+                //Si no hay producto que coincida con el id, redirecciona a home.
+                if (data == null) {
+                    return res.redirect('/')
+                } else {
+                    return res.render('products', { data: data })
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
     },
     add: function(req, res) {
         return res.render("products-add", {db: db});
+    },
+    edit: function(req, res) {
+        return res.render("product-edit", {data: data});
     },
     searchResults: function(req, res) {
         return res.render("searchResults", {db: db})
@@ -34,7 +59,7 @@ const productController = {
                 image_product: req.file.filename,
                 id_user: req.session.user.id_user,
             }
-            products.create(producto)
+            Producto.create(producto)
             return res.redirect("/")
                 
              }

@@ -8,29 +8,33 @@
 	<!-- /Header -->
 
 	<!-- product detail -->
+    <% if(data.id_product = null){ %> 
+		<p>No pudimos encontrar el producto que buscás.</p>
+	<% } else { %>
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%= data.productos[id].nombreProducto %> </h2> 
+			<h2 class="products-title"> <%= data.name_product %> </h2> 
+            
 			<p class="product-detail-description">
-				<a class="products-title" href="/products/products-add">Editar</a>
+				<a class="products-title" href="/products/product-edit/<%= data.id_product %> ">Editar</a>
 			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src= <%= data.productos[id].imagen %>  alt="" class="imagenProducto">
+					<img src="/images/products/<%= data.image_product %>"   alt="" class="imagenProducto">
 					<p class="product-detail-description">
-						<%= data.productos[id].descripcion %></p>
+						<%= data.description %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-                        <% for(let i=0; i< data.comentarios.length ; i+=1) { %>
+                        <% for(let i=0; i< data.comments.length ; i+=1) { %>
 						<article>
-							<img src= <%= data.comentarios[i].fotoUsuarios %>  alt="">
+							<img src= "/images/users/<%= data.comments[i].users.image_profile %> "  alt="">
 							<div class="data">
 								<p class="user">
-								<strong><a href="/users/profile"><%= data.comentarios[i].usuario %>:</a></strong>
-								<%= data.comentarios[i].comentario %>  </p>
+								<strong><a href="/users/profile/<%= data.comments[i].users.id_user %> "><%= data.comments[i].users.user %>:</a></strong>
+								<%= data.comments[i].comment %>  </p>
 							</div>
 						</article>
                         <% } %> 
@@ -45,6 +49,7 @@
 			</div>
 		</div>
 	</div>
+    <% } %>
 	<!-- /product detail -->
 
 	<!-- footer -->

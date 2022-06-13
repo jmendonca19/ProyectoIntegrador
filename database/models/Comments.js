@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes)=>{
         id_comment: {
             type: dataTypes.INTEGER,
             primaryKey: true,
-            autoincrement: true,
+            autoIncrement: true,
             allowNull: false
         },
         comment: {
@@ -28,11 +28,11 @@ module.exports = (sequelize, dataTypes)=>{
         Comments.belongsTo(models.Products,{
             as: 'products',
             foreignKey: 'id_product'
-        })
+        }) 
         Comments.belongsTo(models.Users,{
             as:'users',
             foreignKey: 'id_user'
-        })
+        }) 
     }
  
     return Comments;

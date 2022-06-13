@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include("partials/head.ejs") %> 
+<!-- /Include Head -->
+<body>
+	<!-- Header -->
+	<%- include("partials/headerLogueado.ejs") %> 
+	<!-- /Header -->
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar productos</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+
+            <div class="containerForm">
+                <div class="contact-form">
+                    <form action="/products/products-add" method="POST">
+                        <p>
+                            <label class="formLabel">Nombre del producto</label>
+                            <input class="inputForm" type="text" name="name">
+                        </p>
+                        <p>
+                            <label class="formLabel">Imagen</label>
+                            <input class="inputForm" type="file" name="fotoProducto">
+                        </p>
+                        <p>
+                            <label class="formLabel">Fecha de Carga</label>
+                            <input class="inputForm" type="date" name="fechaCarga">
+                        </p>
+                        <p>
+                            <label class="formLabel">Descripcion</label>
+                            <textarea class="inputForm" type="text" name="descripcion">
+                            </textarea>
+                        </p>
+                        <p class="block">
+                            <button type="submit">
+                                EDITAR PRODUCTO
+                            </button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>	
+    </div>	
+
+
+	<!-- footer -->
+	<%- include("partials/footer.ejs") %> 
+	<!-- /footer -->
+</body>
+
+</html>
