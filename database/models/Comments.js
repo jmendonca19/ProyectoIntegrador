@@ -24,7 +24,6 @@ module.exports = (sequelize, dataTypes)=>{
     }
    
     const Comments = sequelize.define(alias, cols, config)
-
     Comments.associate = function (models){
         Comments.belongsTo(models.Products,{
             as: 'products',

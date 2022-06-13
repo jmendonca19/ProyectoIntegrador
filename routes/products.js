@@ -19,6 +19,7 @@ var upload = multer({ storage: storage})
 router.get("/product/:id", productController.detail);
 
 router.get("/products-add", productController.add);
+router.post("/products-add",upload.single('image_product'), productController.productStore);
 
 router.get("/product-edit", productController.edit);
 
@@ -26,3 +27,4 @@ router.get("/searchResults", productController.searchResults);
 
 
 module.exports = router;
+
