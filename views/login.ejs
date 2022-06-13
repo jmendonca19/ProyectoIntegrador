@@ -22,20 +22,17 @@
                     <p>
                         <label class="formLabel">Email</label>
                         <input class="inputForm" type="email" name="email">
-                        <% if(locals.errors) { %>
-                            <p> <% errors.message %>  </p>
-                        <% } %> 
                     </p>
                     <p>
                         <label class="formLabel">Contraseña</label>
                         <input class="inputForm" type="password" name="password">
                         <% if(locals.errors) { %>
-                            <p class="error"> <% errors.message %>  </p>
+                            <p class="error"> <%= errors.message %>  </p>
                         <% } %> 
                     </p>
                     <p>
                         <label class="recordarmeLabel">Recordarme</label>
-                        <input type="checkbox" name="recordarme">
+                        <input type="checkbox" name="rememberme">
                     </p>
                     <p class="block">
                         <button type="submit">
