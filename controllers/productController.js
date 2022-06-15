@@ -1,6 +1,5 @@
-
-const db = require('../database/models');
-const Usuario = db.Users;
+const db = require('../database/models')
+const Usuario = db.Users
 const Producto = db.Products;
 const Comentario = db.Comments;
 const Op = db.Sequelize.Op;
@@ -16,6 +15,7 @@ const productController = {
                 },                           
                 { association: 'users' }
             ],
+            order: [['comments', 'createdAt', 'DESC']]
         })
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.
@@ -28,6 +28,37 @@ const productController = {
             .catch(error => {
                 console.log(error)
             })
+    },
+    comment: function(req, res){
+        if(req.session.user){
+            const comentario = {
+                id_user: req.session.user.id_user,
+                id_product: req.params.id,
+                comment: req.body.comment,
+            }     
+            Comentario.create(comentario)
+            return res.redirect(`/products/product/${req.params.id}`)
+        }else{
+            return res.redirect("/users/login")
+            }
+    },
+    destroyComment: function(req, res){
+        Comentario.findByPk(req.params.id)
+        .then(data => {
+            Comentario.destroy({
+                where: [
+                    {
+                        id_comment: req.params.id
+                    }
+                ]
+            })
+            .then(() =>{
+                return res.redirect(`/products/product/${data.id_product}`)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        })     
     },
     add: function(req, res) {
         return res.render("products-add", {db: db});
@@ -49,21 +80,36 @@ const productController = {
         }else{
             return res.redirect("/users/login")
         }
-        return res.render("product-edit", {data: data});
     },
     productUpdate: function(req, res){
-        const product = {
-            name_product: req.body.name_product,
-            image_product: "",
-            description: req.body.description,
-        }
-        if(req.file == undefined){
-            product.image_product = req.session.user.image_profile;
-        }else{
-            product.image_product = req.file.filename;
-        }
+        const id = req.params.id;
 
-        
+        Producto.findByPk(id)
+        .then(data => {
+            const product = {
+                name_product: req.body.name_product,
+                image_product: "",
+                description: req.body.description,
+            }
+            
+            if(req.file == undefined){
+                product.image_product = data.image_product;
+            }else{
+                product.image_product = req.file.filename;
+            }
+    
+            Producto.update(product, {
+                where: {
+                    id_product: id
+                }
+            })
+            .then(function(){
+                return res.redirect(`/products/product/${id}`)
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+        })
     },
     searchResults: function(req, res) {
         const productSearch = req.params.search;

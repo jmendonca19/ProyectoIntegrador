@@ -31,7 +31,8 @@
                             </figure>
                             <article class="product-box_data">
                                 <h2> <%= products[i].name_product %> </h2>
-                                <p> <%= products[i].description %>  </p>
+                                <p> <%= products[i].description %> </p>
+                                <a href="/users/profile/<%=products[i].users.id_user%>"><h3><%=products[i].users.user%></h3></a>
                                 <p>Comentarios: <%= products[i].comments.length %> </p>
                             </article>
                         </a>
