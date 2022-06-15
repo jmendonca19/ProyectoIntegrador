@@ -127,7 +127,7 @@ const userController = {
                 if (data == null) {
                     return res.redirect('/')
                 } else {
-                    return res.render('profile', { data: data, datos: datos })
+                    return res.render('profile', { data: data})
                 }
             })
             .catch(error => {
@@ -157,7 +157,7 @@ const userController = {
                         if (data == null) {
                             return res.redirect('/')
                         } else {
-                            return res.render('profile-edit', { data: data, datos: datos })
+                            return res.render('profile-edit', { data: data })
                         }
                     }) 
                     .catch(error => {

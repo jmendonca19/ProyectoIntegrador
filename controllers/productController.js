@@ -63,6 +63,45 @@ const productController = {
     add: function(req, res) {
         return res.render("products-add", {db: db});
     },
+    destroy: function(req, res) {
+       const id = req.params.id
+
+       Producto.findByPk(id)
+       .then(data => {
+           if(req.session.user.id_user == data.id_user){
+            Comentario.destroy({
+                where: [
+                    {
+                        id_product: id
+                    }
+                ]
+            })
+        .then(() => {
+            Producto.destroy({
+                where: [
+                    {
+                        id_product: id
+                    }
+                ]})
+        
+        })
+        .then(() => {
+            return res.redirect("/")
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        } else{
+            return res.redirect("users/login")
+        }
+
+       })
+       .catch(error => {
+        console.log(error)
+    })
+ 
+    }, 
+
     edit: function(req, res) {
         const id = req.params.id;
         if(req.session.user){
