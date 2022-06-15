@@ -8,7 +8,7 @@ const mainController = {
                 {association: 'users'}, 
                 {association:'comments'}
             ],
-            order: [['createdAt', 'DESC']]
+            order: [['created_at', 'DESC']]
         })
             .then (data =>{
                 return res.render('index', {products: data})

@@ -1,6 +1,6 @@
-const data = require("../db/data")
-const db = require('../database/models')
-const Usuario = db.Users
+
+const db = require('../database/models');
+const Usuario = db.Users;
 const Producto = db.Products;
 const Comentario = db.Comments;
 const Op = db.Sequelize.Op;
@@ -66,8 +66,32 @@ const productController = {
         
     },
     searchResults: function(req, res) {
-        return res.render("searchResults", {db: db})
-    },
+        const productSearch = req.params.search;
+        const errors = {}
+        if(productSearch == ""){
+        errors.message = "Este campo no puede estar vacío";
+        res.locals.errors = errors;
+        return res.render('searchResults')
+    } else {
+            Producto.findAll({
+                where: [{name_product: {[Op.like]: "%" + productSearch + "%"} }],
+                order: [
+                    ['name_product', 'ASC']
+                ]
+            })
+                .then(resultado => {
+                    //Si no hay producto que coincida con el id, redirecciona a home.
+                    if (productSearch == null) {
+                        return res.redirect('/')
+                    } else {
+                        return res.render('searchResults', { resultado: resultado })
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }}, 
+    
     productStore: function(req, res){
         const errors = {}
         if(req.body.name_product == ""){
