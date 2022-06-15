@@ -120,18 +120,27 @@ const productController = {
         return res.render('searchResults')
     } else {
             Producto.findAll({
-                where: [{name_product: {[Op.like]: "%" + productSearch + "%"} }],
+                where: {
+                    [Op.or]:[
+                        {name_product: {[Op.like]: "%" + productSearch + "%", }},
+                        {description: {[Op.like]: "%" + productSearch + "%", }},
+                        {id_user: {[Op.like]: "%" + productSearch + "%", }},
+                    
+                    ]
+                    },
                 order: [
                     ['name_product', 'ASC']
-                ]
+                ],
+                include: [  //relación comentario producto.
+                { association: 'comments'},                           
+                { association: 'users' }
+            ],
             })
                 .then(resultado => {
                     //Si no hay producto que coincida con el id, redirecciona a home.
-                    if (productSearch == null) {
-                        return res.redirect('/')
-                    } else {
-                        return res.render('searchResults', { resultado: resultado })
-                    }
+                    
+                        return res.render('searchResults', {resultado: resultado})
+                    
                 })
                 .catch(error => {
                     console.log(error)
