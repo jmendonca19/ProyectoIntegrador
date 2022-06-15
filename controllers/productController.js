@@ -1,4 +1,3 @@
-const data = require("../db/data")
 const db = require('../database/models')
 const Usuario = db.Users
 const Producto = db.Products;
@@ -16,6 +15,7 @@ const productController = {
                 },                           
                 { association: 'users' }
             ],
+            order: [['comments', 'createdAt', 'DESC']]
         })
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.
@@ -49,21 +49,36 @@ const productController = {
         }else{
             return res.redirect("/users/login")
         }
-        return res.render("product-edit", {data: data});
     },
     productUpdate: function(req, res){
-        const product = {
-            name_product: req.body.name_product,
-            image_product: "",
-            description: req.body.description,
-        }
-        if(req.file == undefined){
-            product.image_product = req.session.user.image_profile;
-        }else{
-            product.image_product = req.file.filename;
-        }
+        const id = req.params.id;
 
-        
+        Producto.findByPk(id)
+        .then(data => {
+            const product = {
+                name_product: req.body.name_product,
+                image_product: "",
+                description: req.body.description,
+            }
+            
+            if(req.file == undefined){
+                product.image_product = data.image_product;
+            }else{
+                product.image_product = req.file.filename;
+            }
+    
+            Producto.update(product, {
+                where: {
+                    id_product: id
+                }
+            })
+            .then(function(){
+                return res.redirect(`/products/product/${id}`)
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+        })
     },
     searchResults: function(req, res) {
         return res.render("searchResults", {db: db})
