@@ -35,13 +35,21 @@
 								<p class="user">
 								<strong><a href="/users/profile/<%= data.comments[i].users.id_user %> "><%= data.comments[i].users.user %>:</a></strong>
 								<%= data.comments[i].comment %>  </p>
+
+								<% if(locals.user) { %>
+                                    <% if (locals.user.id_user == data.comments[i].users.id_user){ %> 
+                                    <form action="/products/destroyComment/<%= data.comments[i].id_comment %>" method="POST">
+                                        <button class="btntrash fas fa-trash fa-2x" type="submit"></button>
+                                    </form>
+                                    <% } %>
+                                <% } %>
 							</div>
 						</article>
                         <% } %> 
 
 					</section>
-					<form class="form" action="/products/product" method="GET">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<form class="form" action="/products/product/<%= data.id_product %>/comment" method="POST">
+						<input class="form-input" name="comment" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<hr>

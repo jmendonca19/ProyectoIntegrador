@@ -29,6 +29,37 @@ const productController = {
                 console.log(error)
             })
     },
+    comment: function(req, res){
+        if(req.session.user){
+            const comentario = {
+                id_user: req.session.user.id_user,
+                id_product: req.params.id,
+                comment: req.body.comment,
+            }     
+            Comentario.create(comentario)
+            return res.redirect(`/products/product/${req.params.id}`)
+        }else{
+            return res.redirect("/users/login")
+            }
+    },
+    destroyComment: function(req, res){
+        Comentario.findByPk(req.params.id)
+        .then(data => {
+            Comentario.destroy({
+                where: [
+                    {
+                        id_comment: req.params.id
+                    }
+                ]
+            })
+            .then(() =>{
+                return res.redirect(`/products/product/${data.id_product}`)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        })     
+    },
     add: function(req, res) {
         return res.render("products-add", {db: db});
     },
