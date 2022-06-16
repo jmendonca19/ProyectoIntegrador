@@ -1,4 +1,3 @@
-const data = require("../db/data")
 const db = require('../database/models')
 const Usuario = db.Users
 const Producto = db.Products;
@@ -16,6 +15,7 @@ const productController = {
                 },                           
                 { association: 'users' }
             ],
+            order: [['comments', 'createdAt', 'DESC']]
         })
             .then(data => {
                 //Si no hay producto que coincida con el id, redirecciona a home.
@@ -63,6 +63,45 @@ const productController = {
     add: function(req, res) {
         return res.render("products-add", {db: db});
     },
+    destroy: function(req, res) {
+       const id = req.params.id
+
+       Producto.findByPk(id)
+       .then(data => {
+           if(req.session.user.id_user == data.id_user){
+            Comentario.destroy({
+                where: [
+                    {
+                        id_product: id
+                    }
+                ]
+            })
+        .then(() => {
+            Producto.destroy({
+                where: [
+                    {
+                        id_product: id
+                    }
+                ]})
+        
+        })
+        .then(() => {
+            return res.redirect("/")
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        } else{
+            return res.redirect("users/login")
+        }
+
+       })
+       .catch(error => {
+        console.log(error)
+    })
+ 
+    }, 
+
     edit: function(req, res) {
         const id = req.params.id;
         if(req.session.user){
@@ -80,25 +119,73 @@ const productController = {
         }else{
             return res.redirect("/users/login")
         }
-        return res.render("product-edit", {data: data});
     },
     productUpdate: function(req, res){
-        const product = {
-            name_product: req.body.name_product,
-            image_product: "",
-            description: req.body.description,
-        }
-        if(req.file == undefined){
-            product.image_product = req.session.user.image_profile;
-        }else{
-            product.image_product = req.file.filename;
-        }
+        const id = req.params.id;
 
-        
+        Producto.findByPk(id)
+        .then(data => {
+            const product = {
+                name_product: req.body.name_product,
+                image_product: "",
+                description: req.body.description,
+            }
+            
+            if(req.file == undefined){
+                product.image_product = data.image_product;
+            }else{
+                product.image_product = req.file.filename;
+            }
+    
+            Producto.update(product, {
+                where: {
+                    id_product: id
+                }
+            })
+            .then(function(){
+                return res.redirect(`/products/product/${id}`)
+            })
+            .catch(error =>{
+                console.log(error)
+            });
+        })
     },
     searchResults: function(req, res) {
-        return res.render("searchResults", {db: db})
-    },
+        const productSearch = req.params.search;
+        const errors = {}
+        if(productSearch == ""){
+        errors.message = "Este campo no puede estar vacío";
+        res.locals.errors = errors;
+        return res.render('searchResults')
+    } else {
+            Producto.findAll({
+                where: {
+                    [Op.or]:[
+                        {name_product: {[Op.like]: "%" + productSearch + "%", }},
+                        {description: {[Op.like]: "%" + productSearch + "%", }},
+                        {id_user: {[Op.like]: "%" + productSearch + "%", }},
+                    
+                    ]
+                    },
+                order: [
+                    ['name_product', 'ASC']
+                ],
+                include: [  //relación comentario producto.
+                { association: 'comments'},                           
+                { association: 'users' }
+            ],
+            })
+                .then(resultado => {
+                    //Si no hay producto que coincida con el id, redirecciona a home.
+                    
+                        return res.render('searchResults', {resultado: resultado})
+                    
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }}, 
+    
     productStore: function(req, res){
         const errors = {}
         if(req.body.name_product == ""){

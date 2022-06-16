@@ -13,11 +13,18 @@
 	<% } else { %>
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%= data.name_product %> </h2> 
-            
-			<p class="product-detail-description">
-				<a class="products-title" href="/products/product-edit/<%= data.id_product %> ">Editar</a>
-			</p>
+			<h2 class="products-title"> <%= data.name_product %> </h2>
+            <h3 class="product-detail-description">Producto subido por: <a class="productDetail" href="/users/profile/<%= data.users.id_user %>"> <%=data.users.user %> </a></h3>
+				<% if (locals.user){ %> 
+					<% if (locals.user.id_user == data.id_user ){ %> 
+						<div class="icono">
+							<a class="products-title" href="/products/product-edit/<%= data.id_product %> ">Editar</a>
+							<form action="/products/destroy/<%= data.id_product %>" method="POST">
+								<button class="btntrash" type="submit"> <i class="fas fa-trash"></i></button>
+							</form>
+						</div>
+					<% } %>
+				<% } %>
 		</div>
 		<div class="product-detail">
 			<div class="row">

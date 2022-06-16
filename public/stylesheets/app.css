@@ -126,6 +126,20 @@ hr {
   margin: 20px auto 0;
 }
 
+.icono {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    padding-left: 250px;
+    gap: 40px;
+  }
+
+.productDetail{
+    color: whitesmoke;
+}
+
 .main-navbar {
   margin-top: 20px;
   display: none;

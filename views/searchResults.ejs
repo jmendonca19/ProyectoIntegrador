@@ -4,59 +4,35 @@
 <body>
     <%- include("partials/headerLogueado.ejs") %> 
 	
-	<!-- RESULTADO DE BUSQUEDA -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
-            <% for(let i=0; i< data.productos.length ; i+=1) { %>
+            
+            <% for(let i=0; i< resultado.length ; i+=1) { %>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <section class="product-box">
-                        <a href="/products/product/<%= data.productos[i].id %>">
+                        <a href="/products/product/<%= resultado[i].id_product %>">
                             <figure class="product-box_image">
-                                <img src= <%= data.productos[i].imagen %>  alt="autos" class="imgCards">
+                                <img src= "/images/products/<%= resultado[i].image_product %>" alt="autos" class="imgCards">
                             </figure>
                             <article class="product-box_data">
-                                <h2> <%= data.productos[i].nombreProducto %>  </h2>
-                                <p> <%= data.productos[i].descripcion %>  </p>
-                                <p>Comentarios: <%= data.comentarios.length %></p>
+                                <h2> <%= resultado[i].name_product %>  </h2>
+                                <p> <%= resultado[i].description %>  </p>
+                                <p>Comentarios: <%= resultado[i].comments.length %></p>
                             </article>
                         </a>
                     </section>
                 </div>
             <% } %> 
+            <% if(locals.errors) { %>
+                <p class="error"> <%= errors.message %>  </p>
+            <% } %> 
         </div>
     </div>
         
 
-
-			
- <!-- NOVEDADES -->
-            <div class="container products-wrapper">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="products-title">Novedades</h2>
-                    </div>
-                
-                    <% for(let i=0; i< data.productos.length ; i+=1) { %>
-                        <div class="col-12 col-sm-6 col-lg-3">
-                            <section class="product-box">
-                                <a href="/products/product/<%= data.productos[i].id %>">
-                                    <figure class="product-box_image">
-                                        <img src= <%= data.productos[i].imagen %> alt="autos" class="imgCards">
-                                    </figure>
-                                    <article class="product-box_data">
-                                        <h2> <%= data.productos[i].nombreProducto %>  </h2>
-                                        <p> <%= data.productos[i].descripcion %>  </p>
-                                        <p>Comentarios: <%= data.comentarios.length %></p>
-                                    </article>
-                                </a>
-                            </section>
-                        </div>
-                    <% } %> 
-                </div>
-            </div>
             
 	<!-- footer -->
     <%- include("partials/footer.ejs") %> 
