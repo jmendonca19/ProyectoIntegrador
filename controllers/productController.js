@@ -151,12 +151,13 @@ const productController = {
         })
     },
     searchResults: function(req, res) {
-        const productSearch = req.params.search;
+        
+        const productSearch = req.query.search;
         const errors = {}
-        if(productSearch == ""){
+        if(productSearch == "" || productSearch == undefined){
         errors.message = "Este campo no puede estar vacío";
         res.locals.errors = errors;
-        return res.render('searchResults')
+        return res.render('searchResults', {resultado:errors})
     } else {
             Producto.findAll({
                 where: {
@@ -176,9 +177,16 @@ const productController = {
             ],
             })
                 .then(resultado => {
-                    //Si no hay producto que coincida con el id, redirecciona a home.
                     
+                    if(resultado == ""){
+                        errors.message = "No hay resultados para su búsqueda";
+                        res.locals.errors = errors;
+                        return res.render('searchResults', {resultado:errors})
+                    } else{
                         return res.render('searchResults', {resultado: resultado})
+                    }
+                        
+                        
                     
                 })
                 .catch(error => {
