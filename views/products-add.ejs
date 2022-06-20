@@ -31,6 +31,9 @@
                             <label class="formLabel">Descripcion</label>
                             <textarea class="inputForm" type="text" name="description">
                             </textarea>
+                            <% if(locals.errors) { %>
+                                <p class="error"> <%= errors.message %>  </p>
+                            <% } %> 
                         </p>
                         <p class="block">
                             <button type="submit">

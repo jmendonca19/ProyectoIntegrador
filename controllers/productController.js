@@ -164,7 +164,7 @@ const productController = {
                     [Op.or]:[
                         {name_product: {[Op.like]: "%" + productSearch + "%", }},
                         {description: {[Op.like]: "%" + productSearch + "%", }},
-                        {id_user: {[Op.like]: "%" + productSearch + "%", }},
+                        {user: {[Op.like]: "%" + productSearch + "%", }},
                     
                     ]
                     },
@@ -200,7 +200,11 @@ const productController = {
             errors.message = "El nombre del producto es obligatorio",
             res.locals.errors = errors;
             return res.render('products-add')
-        } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
+        } else if (req.file == undefined){
+            errors.message = "La foto del producto es obligatoria";
+            res.locals.errors = errors;
+            return res.render('products-add')
+        }else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
             errors.message = "El archivo debe ser jpg o png";
             res.locals.errors = errors;
             return res.render('products-add')
