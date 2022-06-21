@@ -151,19 +151,20 @@ const productController = {
         })
     },
     searchResults: function(req, res) {
-        const productSearch = req.params.search;
+        
+        const productSearch = req.query.search;
         const errors = {}
-        if(productSearch == ""){
+        if(productSearch == "" || productSearch == undefined){
         errors.message = "Este campo no puede estar vacío";
         res.locals.errors = errors;
-        return res.render('searchResults')
+        return res.render('searchResults', {resultado:errors})
     } else {
             Producto.findAll({
                 where: {
                     [Op.or]:[
                         {name_product: {[Op.like]: "%" + productSearch + "%", }},
                         {description: {[Op.like]: "%" + productSearch + "%", }},
-                        {id_user: {[Op.like]: "%" + productSearch + "%", }},
+                        {user: {[Op.like]: "%" + productSearch + "%", }},
                     
                     ]
                     },
@@ -176,9 +177,16 @@ const productController = {
             ],
             })
                 .then(resultado => {
-                    //Si no hay producto que coincida con el id, redirecciona a home.
                     
+                    if(resultado == ""){
+                        errors.message = "No hay resultados para su búsqueda";
+                        res.locals.errors = errors;
+                        return res.render('searchResults', {resultado:errors})
+                    } else{
                         return res.render('searchResults', {resultado: resultado})
+                    }
+                        
+                        
                     
                 })
                 .catch(error => {
@@ -192,7 +200,11 @@ const productController = {
             errors.message = "El nombre del producto es obligatorio",
             res.locals.errors = errors;
             return res.render('products-add')
-        } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
+        } else if (req.file == undefined){
+            errors.message = "La foto del producto es obligatoria";
+            res.locals.errors = errors;
+            return res.render('products-add')
+        }else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
             errors.message = "El archivo debe ser jpg o png";
             res.locals.errors = errors;
             return res.render('products-add')
