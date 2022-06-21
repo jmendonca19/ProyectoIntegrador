@@ -610,3 +610,7 @@ textarea.form-input {
     margin: auto;
   }
 }
+
+.product-detail-description {
+  color: white
+}
