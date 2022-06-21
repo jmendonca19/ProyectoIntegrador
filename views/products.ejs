@@ -18,7 +18,7 @@
 				<% if (locals.user){ %> 
 					<% if (locals.user.id_user == data.id_user ){ %> 
 						<div class="icono">
-							<a class="products-title" href="/products/product-edit/<%= data.id_product %> ">Editar</a>
+							<a class="products-title" href="/products/product-edit/<%= data.id_product %>">Editar</a>
 							<form action="/products/destroy/<%= data.id_product %>" method="POST">
 								<button class="btntrash" type="submit"> <i class="fas fa-trash"></i></button>
 							</form>
