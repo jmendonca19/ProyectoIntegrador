@@ -164,9 +164,7 @@ const productController = {
                 where: {
                     [Op.or]:[
                         {name_product: {[Op.like]: "%" + productSearch + "%", }},
-                        {description: {[Op.like]: "%" + productSearch + "%", }},
-                        
-
+                        {description: {[Op.like]: "%" + productSearch + "%", }},        
                     ]
                     },
                 order: [
