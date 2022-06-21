@@ -154,7 +154,7 @@ const productController = {
         
         const productSearch = req.query.search;
         const errors = {}
-        if(productSearch == "" || productSearch == undefined){
+        if(productSearch == ""){
         errors.message = "Este campo no puede estar vacío";
         res.locals.errors = errors;
         return res.render('searchResults', {resultado:errors})
@@ -163,9 +163,7 @@ const productController = {
                 where: {
                     [Op.or]:[
                         {name_product: {[Op.like]: "%" + productSearch + "%", }},
-                        {description: {[Op.like]: "%" + productSearch + "%", }},
-                        {user: {[Op.like]: "%" + productSearch + "%", }},
-                    
+                        {description: {[Op.like]: "%" + productSearch + "%", }},        
                     ]
                     },
                 order: [
