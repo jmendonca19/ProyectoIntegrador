@@ -7,7 +7,7 @@ const Op = db.Sequelize.Op;
 const productController = {
     detail: function(req, res){
         const id = req.params.id;
-        
+
         Producto.findByPk(id, {
             include: [  //relación comentario producto.
                 { association: 'comments',
@@ -151,11 +151,10 @@ const productController = {
         })
     },
     searchResults: function(req, res) {
-
-    const productSearch = req.query.search;
-    const errors = {}
-
-    if(productSearch == ""){
+        
+        const productSearch = req.query.search;
+        const errors = {}
+        if(productSearch == ""){
         errors.message = "Este campo no puede estar vacío";
         res.locals.errors = errors;
         return res.render('searchResults', {resultado:errors})
@@ -171,8 +170,8 @@ const productController = {
                     ['name_product', 'ASC']
                 ],
                 include: [  //relación comentario producto.
-                { association: 'comments'},  //                         
-                { association: 'users' } //relación comentario usuario 
+                { association: 'comments'},                           
+                { association: 'users' }
             ],
             })
                 .then(resultado => {
@@ -184,6 +183,7 @@ const productController = {
                     } else{
                         return res.render('searchResults', {resultado: resultado})
                     }
+                        
                         
                     
                 })
