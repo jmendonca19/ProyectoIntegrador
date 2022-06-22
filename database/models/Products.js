@@ -29,8 +29,8 @@ module.exports = (sequelize, dataTypes)=>{
    
     let config = {
        tableName: 'products',
-       timestamps: true, //Aclaración en caso de no explicitar created_at, deleted_at y updated_at
-       underscored: true, //Aclaración en caso que los timestamps usen guiones bajos en lugar de camelCase.
+       timestamps: true, 
+       underscored: true, 
     }
    
     const Products = sequelize.define(alias, cols, config)
