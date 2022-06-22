@@ -30,4 +30,6 @@ router.post('/profile-edit/profileStore', upload.single('image_profile'), userCo
 
 router.post("/logout", userController.logout)
 
+router.get('/seguir/id/:id' , userController.seguir);
+
 module.exports = router;

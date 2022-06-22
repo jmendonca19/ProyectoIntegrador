@@ -1,7 +1,8 @@
-
 const bcrypt = require('bcryptjs')
 const db = require("../database/models");
-const users = db.Users //user es el alias de la base de datos
+const users = db.Users //user es el alias del modelo
+const Seguidores = db.Seguidor; 
+const Op = db.Sequelize.Op; //* Da la posibilidad de trabajar con operadores
 
 const userController = {
     register: function(req, res){
@@ -127,7 +128,9 @@ const userController = {
                         include: {
                             association: "comments"
                         }
-                    }
+                    },
+                    { association: "leSiguen" },
+                    { association: "sigue" }
                 ]
             })
             .then(data => {
@@ -204,6 +207,43 @@ const userController = {
             .catch(error => {
                 console.log(error)
             }) 
+    },
+    seguir: function (req, res) {
+      let idUsuarioAseguir = req.params.id; /* soy el id 5 y entro en el profile del id 4 -> me trae 4 */
+
+      Seguidores.findAll({ 
+            where: [{ id_seguido: idUsuarioAseguir }] //traer toda la gente que sigue al usuario 4
+        })
+        .then((resultado) => {
+          let arr = [] //Almacenar las relaciones -> Dos opciones: [] / [true]
+          //¿Esta la relacion creada?
+          for (let i = 0; i < resultado.length; i++) { /* recorro los resultados de los que siguen al id 4 */
+            if(resultado[i].id_seguidor == req.session.user.id_user) { //si el id de la persona logueada coincide con alguna persona que sigue al id 4 que pushee al array true
+              arr.push(true) 
+            } 
+          }
+          if (arr.length > 0) {
+            //si lo encuentra significa que ya lo seguia por lo tanto lo esta dejando de seguir y eliminamos ambos ids
+            Seguidores.destroy({
+              where: {
+                [Op.and]: [
+                  { id_seguido: idUsuarioAseguir },
+                  { id_seguidor: req.session.user.id_user },
+                ],
+              },
+            });
+          } else {
+            //si no lo encuentra significa que no lo seguia por lo tanto lo tiene que empezar a seguir
+            Seguidores.create({
+              id_seguido: idUsuarioAseguir,
+              id_seguidor: req.session.user.id_user,
+            });
+          }
+          res.redirect("/users/profile/" + idUsuarioAseguir);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     }
 }
 
