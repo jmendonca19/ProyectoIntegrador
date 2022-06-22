@@ -17,6 +17,7 @@ let storage = multer.diskStorage({
 let upload = multer({storage: storage});
 
 router.get("/register", userController.register)
+/* en el upload.single('nameDelInput') */
 router.post("/register", upload.single('image_profile'), userController.registerProcess)
 
 router.get("/login", userController.login)

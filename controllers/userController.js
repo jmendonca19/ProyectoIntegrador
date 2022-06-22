@@ -9,6 +9,7 @@ const userController = {
     },
     registerProcess: function(req, res) {
         const errors = {}
+        /* Validaciones */
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
             res.locals.errors = errors;
@@ -28,19 +29,24 @@ const userController = {
         } else if(req.body.user == "") {
             errors.message = "El nombre de usuario es obligatorio"
             res.locals.errors = errors;
-            console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else {
+/* Si pasan todas las validaciones, buscamos en la base, en la tabla Users el mail que el usuario puso con un findOne */
+/* Debemos pasar los criterios de busqueda como un objeto literal */
             users.findOne({
+                /* dentro del where pasamos el atributo de acuerdo con la columna de la tabla y el valor a buscar */
                 where: [{email: req.body.email}]
             })
+            /* Esto devuelve una promesa ya que es una funcion asincronica y la resolvemos con un then */
+            /* La resolucion de la promesa se asigna al parametro del callback user en este caso */
             .then(function(user){
+                /* Si la resolucion es diferente a null, significa que ya existe ese mail en la base */
                 if(user != null){
                     errors.message = "El email ya esta registrado por favor elija otro";
                     res.locals.errors = errors;
-                    console.log(errors) // Guardar errors en locals
                     return res.render('register')
                 } else {
+                    /* Armamos el usuario para pegarlo en la base (con las mismas propiedades de la base)*/
                     let usuario = {
                         user: req.body.user,
                         email: req.body.email,
@@ -48,8 +54,9 @@ const userController = {
                         fecha_nacimiento: req.body.fecha_nacimiento,
                         image_profile: req.file.filename
                     }
+                    /* Creamos al usuario con el .create (metodo de sequelize) que seria el equivalente al insert */
                     users.create(usuario)
-                        .then(user => {
+                        .then(() => {
                             return res.redirect('/')
                         })
                         .catch(e=>{
