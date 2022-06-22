@@ -151,10 +151,11 @@ const productController = {
         })
     },
     searchResults: function(req, res) {
-        
-        const productSearch = req.query.search;
-        const errors = {}
-        if(productSearch == ""){
+
+    const productSearch = req.query.search;
+    const errors = {}
+
+    if(productSearch == ""){
         errors.message = "Este campo no puede estar vacío";
         res.locals.errors = errors;
         return res.render('searchResults', {resultado:errors})
@@ -170,8 +171,8 @@ const productController = {
                     ['name_product', 'ASC']
                 ],
                 include: [  //relación comentario producto.
-                { association: 'comments'},                           
-                { association: 'users' }
+                { association: 'comments'},  //                         
+                { association: 'users' } //relación comentario usuario 
             ],
             })
                 .then(resultado => {
@@ -183,7 +184,6 @@ const productController = {
                     } else{
                         return res.render('searchResults', {resultado: resultado})
                     }
-                        
                         
                     
                 })
