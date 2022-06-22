@@ -1,5 +1,4 @@
 const db = require('../database/models')
-const Usuario = db.Users
 const Producto = db.Products;
 const Comentario = db.Comments;
 const Op = db.Sequelize.Op;

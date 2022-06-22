@@ -46,6 +46,14 @@ module.exports = (sequelize, dataTypes)=>{
             as: "comments",
             foreignKey: "id_user"
         })
+        Users.hasMany(models.Seguidor, { /* un usuario sigue a muchos usuarios */
+            as: 'sigue',
+            foreignKey: 'id_seguidor'
+        }),
+        Users.hasMany(models.Seguidor, { /* un usuario tiene muchos seguidores */
+            as: 'leSiguen',
+            foreignKey: 'id_seguido'
+        })
     }
  
     return Users;

@@ -20,20 +20,33 @@
                             <i class="fas fa-cog"></i>
 						</a>
 					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
+                    <% if(locals.user != undefined ) { /* Si no esta logueado no puede seguir a nadie */
+						if(locals.user.id_user != data.id_user) { /* un usuario no puede seguirse a si mismo */
+						let cont = 0;
+						for (let i = 0; i < data.leSiguen.length; i++) { /* recorremos cant de seguidores de la persona */
+							if(data.leSiguen[i].id_seguidor == locals.user.id_user) { /* si dentro de los seguidores de esa persona, se encuentra el id_seguidor (la persona que sigue) que es igual al id del usuario logueado */
+								cont = 1;
+							}
+						}
+						if(cont == 1) { %>
+							<a href='/users/seguir/id/<%= data.id_user %>' class="btn mt-3 ml-4">Dejar de seguir</a>
+					<% } else { %>
+						    <a href='/users/seguir/id/<%= data.id_user %>' class="btn mt-3 ml-4">Seguir</a>
+					<% }}} %> 
 				</div>
-                <p class="datosProfile"><%= data.email%></p> 
+                <p class="datosProfile"><%= data.email %></p> 
 				<div>
 					<ul class="">
 						<li class="datosProfile"> <%= data.products.length %> productos </li>
-						<li class="datosProfile">200 seguidores</li>
+						<li class="datosProfile"> Sigue a <%= data.sigue.length %> personas </li>
+						<li class="datosProfile"> Lo siguen <%= data.leSiguen.length %> seguidores</li>
 						<li class="datosProfile"> <%= data.comments.length %> comentarios </li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- /Datos del usuario -->
+	<!-- Datos del usuario -->
 
 	<!-- Mis productos -->
 	<div class="container products-wrapper">
