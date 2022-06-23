@@ -24,7 +24,7 @@
 						if(locals.user.id_user != data.id_user) { /* un usuario no puede seguirse a si mismo */
 						let cont = 0;
 						for (let i = 0; i < data.leSiguen.length; i++) { /* recorremos cant de seguidores de la persona */
-							if(data.leSiguen[i].id_seguidor == locals.user.id_user) { /* si dentro de los seguidores de esa persona, se encuentra el id_seguidor (la persona que sigue) que es igual al id del usuario logueado */
+							if(data.leSiguen[i].id_seguidor == locals.user.id_user) { /* si dentro de los seguidores de esa persona, se encuentra el id_seguidor (la persona que sigue) que es igual al id del usuario logueado -> cont=1*/
 								cont = 1;
 							}
 						}

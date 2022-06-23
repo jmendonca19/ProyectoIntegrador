@@ -8,7 +8,7 @@ const userController = require("../controllers/userController")
 let storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, path.join(__dirname, '../public/images/users'))
-    },  // donde se suben los archivos
+    },  // definimos la ruta donde se suben los archivos
     filename: function(req, file, cb){
         cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
     }      // Nombre del archivo
