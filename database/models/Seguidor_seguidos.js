@@ -8,7 +8,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER,
         },
         id_seguidor: {
-            type: dataTypes.INTEGER,  // El sigue (seguidos).
+            type: dataTypes.INTEGER,  // El sigue (seguidor).
         },
         id_seguido: {
             type: dataTypes.INTEGER, // A el lo siguen (seguidos). 
