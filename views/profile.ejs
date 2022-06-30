@@ -14,12 +14,13 @@
 				<img src= "/images/users/<%= data.image_profile %>"  alt="foto de <%= data.user %> " class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
-				<div class="d-flex align-items-center ">
+				<div class="d-flex align-items-center" style="width: 560px;">
 					<h1 class="profileText"> <%= data.user %> 
 						<a href="/users/profile-edit/<%= data.id_user %>">
                             <i class="fas fa-cog"></i>
 						</a>
 					</h1>
+                    <!-- Boton de seguir -->
                     <% if(locals.user != undefined ) { /* Si no esta logueado no puede seguir a nadie */
 						if(locals.user.id_user != data.id_user) { /* un usuario no puede seguirse a si mismo */
 						let cont = 0;
@@ -32,14 +33,22 @@
 							<a href='/users/seguir/id/<%= data.id_user %>' class="btn mt-3 ml-4">Dejar de seguir</a>
 					<% } else { %>
 						    <a href='/users/seguir/id/<%= data.id_user %>' class="btn mt-3 ml-4">Seguir</a>
-					<% }}} %> 
+					<% }}} %>
+
+                    <% if(data.leSiguen.length <= 1) { %>
+                        <a href="/users/listaSeguidores/<%= data.id_user %>" class="btn mt-3 ml-4">
+                            <span class="datosProfile"> <%= data.leSiguen.length %> seguidor</span>
+                        </a> 
+                        <% } else { %>
+                            <a href="/users/listaSeguidores/<%= data.id_user %>" class="btn mt-3 ml-4">
+                                <span class="datosProfile"> <%= data.leSiguen.length %> seguidores</span>
+                            </a> 
+                        <% } %>
 				</div>
                 <p class="datosProfile"><%= data.email %></p> 
 				<div>
-					<ul class="">
+					<ul>
 						<li class="datosProfile"> <%= data.products.length %> productos </li>
-						<li class="datosProfile"> Sigue a <%= data.sigue.length %> personas </li>
-						<li class="datosProfile"> Lo siguen <%= data.leSiguen.length %> seguidores</li>
 						<li class="datosProfile"> <%= data.comments.length %> comentarios </li>
 					</ul>
 				</div>
@@ -61,7 +70,7 @@
                     <section class="product-box">
                         <a href="/products/product/<%= data.products[i].id_product %> ">
                             <figure class="product-box_image">
-                                <img src= "/images/products/<%= data.products[i].image_product %> " alt="card">
+                                <img src= "/images/products/<%= data.products[i].image_product %> " alt="card" class="imgCards">
                             </figure>
                             <article class="product-box_data">
                                 <h2> <%= data.products[i].name_product %>  </h2>

@@ -121,8 +121,18 @@ const userController = {
                             association: "comments"
                         }
                     },
-                    { association: "leSiguen" },
-                    { association: "sigue" }
+                    { 
+                        association: "leSiguen",
+                        include: {
+                            association: "seguidor"
+                        }
+                    },
+                    { 
+                        association: "sigue",
+                        include: {
+                            association: "seguido"
+                        }
+                    }
                 ]
             })
             .then(data => {
@@ -236,6 +246,30 @@ const userController = {
         .catch((err) => {
           console.error(err);
         })
+    },
+    listaSeguidores: function(req, res) {
+        const id = req.params.id
+
+        users.findByPk(id, {
+                include: [ 
+                    { 
+                        association: "leSiguen",
+                        include: {
+                            association: "seguidor"
+                        }
+                    }
+                ]
+            })
+            .then(data => {
+                if (data == null) {
+                    return res.redirect('/')
+                } else {
+                    return res.render("listaSeguidores", {data: data})
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 }
 
