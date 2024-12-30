@@ -1,3 +1,5 @@
+import * as amplitude from "@amplitude/analytics-browser"
+
 const bcrypt = require('bcryptjs')
 const db = require("../database/models");
 const users = db.Users //user es el alias del modelo

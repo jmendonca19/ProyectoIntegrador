@@ -1,3 +1,5 @@
+import * as amplitude from "@amplitude/analytics-browser"
+
 const db = require('../database/models')
 const Products = db.Products;
 
