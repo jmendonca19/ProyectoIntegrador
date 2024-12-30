@@ -1,8 +1,8 @@
-import { hashSync, compareSync } from 'bcryptjs';
-import { Users, Seguidor, Sequelize } from "../database/models";
-const users = Users //user es el alias del modelo
-const Seguidores = Seguidor; 
-const Op = Sequelize.Op; //* Da la posibilidad de trabajar con operadores
+const bcrypt = require('bcryptjs')
+const db = require("../database/models");
+const users = db.Users //user es el alias del modelo
+const Seguidores = db.Seguidor; 
+const Op = db.Sequelize.Op; //* Da la posibilidad de trabajar con operadores
 
 const userController = {
     register: function(req, res){
@@ -44,7 +44,7 @@ const userController = {
                     let usuario = {
                         user: req.body.user,
                         email: req.body.email,
-                        password: hashSync(req.body.password, 10),
+                        password: bcrypt.hashSync(req.body.password, 10),
                         fecha_nacimiento: req.body.fecha_nacimiento,
                         image_profile: req.file.filename
                     }
@@ -78,7 +78,7 @@ const userController = {
                 res.locals.errors = errors
                 //renderizar la vista
                 return res.render('login');
-            } else if(compareSync(req.body.password, user.password) == false){
+            } else if(bcrypt.compareSync(req.body.password, user.password) == false){
                 //crear un mensaje de error
                 errors.message = "La contraseña es incorrecta"
                 //Pasar el mensaje a la vista
@@ -184,7 +184,7 @@ const userController = {
         const user = {
             user: req.body.user,
             email: req.body.email,
-            password: hashSync(req.body.password, 10),
+            password: bcrypt.hashSync(req.body.password, 10),
             fecha_nacimiento: req.body.fecha_nacimiento,
             image_profile: ""
         }
@@ -273,4 +273,4 @@ const userController = {
     }
 }
 
-export default userController;
+module.exports = userController;
