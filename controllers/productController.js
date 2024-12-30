@@ -1,5 +1,3 @@
-import * as amplitude from "@amplitude/analytics-browser"
-
 const db = require('../database/models')
 const Producto = db.Products;
 const Comentario = db.Comments;
