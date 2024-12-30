@@ -1,5 +1,3 @@
-import * as amplitude from "@amplitude/analytics-browser"
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
